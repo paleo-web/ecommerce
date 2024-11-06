@@ -1,0 +1,30 @@
+// authSlice.js or authReducer.js
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  user: null,
+  loading: true, // Loading can be useful to show spinner until auth state is known
+  isLogin: false,
+};
+
+export const authSlice = createSlice({
+  name: "auth",
+  initialState,
+
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+      state.isLogin = true;
+    },
+    clearUser: (state) => {
+      state.user = null;
+      state.loading = false;
+      state.isLogin = false;
+    },
+  },
+});
+
+export const { setUser, clearUser } = authSlice.actions;
+
+export default authSlice;
